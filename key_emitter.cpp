@@ -18,8 +18,8 @@ void KeyEmitter::emitKey(Qt::Key key)
 	if(!receiver) {
 		return;
 	}
-	QKeyEvent* pressEvent = new QKeyEvent(QEvent::KeyPress, key, Qt::NoModifier, QKeySequence(key).toString());
-	QKeyEvent* releaseEvent = new QKeyEvent(QEvent::KeyRelease, key, Qt::NoModifier);
-	QCoreApplication::sendEvent(receiver, pressEvent);
-	QCoreApplication::sendEvent(receiver, releaseEvent);
+	QKeyEvent pressEvent = QKeyEvent(QEvent::KeyPress, key, Qt::NoModifier, QKeySequence(key).toString());
+	QKeyEvent releaseEvent = QKeyEvent(QEvent::KeyRelease, key, Qt::NoModifier);
+	QCoreApplication::sendEvent(receiver, &pressEvent);
+	QCoreApplication::sendEvent(receiver, &releaseEvent);
 }
